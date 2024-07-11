@@ -34,6 +34,7 @@
 
 #include "lock_detectors.h"
 #include <cmath>
+#include <stdio.h>
 
 /*
  * Signal-to-Noise (SNR) (\f$\rho\f$) estimator using the Signal-to-Noise Variance (SNV) estimator:
@@ -67,6 +68,7 @@ float cn0_svn_estimator(const gr_complex* Prompt_buffer, int length, float coh_i
     Ptot /= static_cast<float>(length);
     SNR = Psig / (Ptot - Psig);
     SNR_dB_Hz = 10.0F * std::log10(SNR) - 10.0F * std::log10(coh_integration_time_s);
+    printf("Psig: %f, Ptot: %f, SNR_dB_Hz: %f, SNR: %f\n", Psig, Ptot, SNR_dB_Hz, SNR);
     return SNR_dB_Hz;
 }
 
