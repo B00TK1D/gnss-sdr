@@ -119,7 +119,7 @@ float cn0_m2m4_estimator(const gr_complex* Prompt_buffer, int length, float coh_
             SNR_aux = aux / (m_2 - aux);
         }
     SNR_dB_Hz = 10.0F * std::log10(SNR_aux) - 10.0F * std::log10(coh_integration_time_s);
-
+    printf("Psig: %f, m_2: %f, m_4: %f, SNR_dB_Hz: %f, SNR_aux: %f\n", Psig, m_2, m_4, SNR_dB_Hz, SNR_aux);
     return SNR_dB_Hz;
 }
 
