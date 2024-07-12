@@ -148,3 +148,17 @@ float carrier_lock_detector(const gr_complex* Prompt_buffer, int length)
     NBD = tmp_sum_I * tmp_sum_I - tmp_sum_Q * tmp_sum_Q;
     return NBD / NBP;
 }
+
+
+float psig_estimator(const gr_complex* Prompt_buffer, int length, float coh_integration_time_s)
+{
+    float Psig = 0.0;
+    const auto n = static_cast<float>(length);
+    for (int i = 0; i < length; i++)
+        {
+            Psig += std::abs(Prompt_buffer[i].real());
+        }
+    Psig /= n;
+    Psig = Psig * Psig;
+    return Psig;
+}

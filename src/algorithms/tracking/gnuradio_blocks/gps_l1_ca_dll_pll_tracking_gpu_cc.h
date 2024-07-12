@@ -156,6 +156,7 @@ private:
     // CN0 estimation and lock detector
     double d_carrier_lock_test;
     double d_CN0_SNV_dB_Hz;
+    double d_PSig;
     double d_carrier_lock_threshold;
     int32_t d_carrier_lock_fail_counter;
     int32_t d_cn0_estimation_counter;

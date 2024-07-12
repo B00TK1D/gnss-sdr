@@ -59,6 +59,7 @@ public:
     double Prompt_I{};                   //!< Set by Tracking processing block
     double Prompt_Q{};                   //!< Set by Tracking processing block
     double CN0_dB_hz{};                  //!< Set by Tracking processing block
+    double PSig{};                       //!< Set by Tracking processing block
     double Carrier_Doppler_hz{};         //!< Set by Tracking processing block
     double Carrier_phase_rads{};         //!< Set by Tracking processing block
     double Code_phase_samples{};         //!< Set by Tracking processing block
