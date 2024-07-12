@@ -2000,7 +2000,6 @@ int kf_tracking::general_work(int noutput_items __attribute__((unused)), gr_vect
                         current_synchro_data.Carrier_phase_rads = d_acc_carrier_phase_rad;
                         current_synchro_data.Carrier_Doppler_hz = d_carrier_doppler_kf_hz;
                         current_synchro_data.CN0_dB_hz = d_CN0_SNV_dB_Hz;
-                        current_synchro_data.PSig = 1.0;
                         current_synchro_data.correlation_length_ms = d_correlation_length_ms;
                         current_synchro_data.Flag_valid_symbol_output = true;
                         d_P_data_accu = gr_complex(0.0, 0.0);
