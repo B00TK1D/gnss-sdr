@@ -144,6 +144,7 @@ private:
     float d_acq_carrier_doppler_hz;
     float d_carrier_lock_test;
     float d_CN0_SNV_dB_Hz;
+    float d_PSig;
     float d_carrier_lock_threshold;
     float d_control_id;
 
