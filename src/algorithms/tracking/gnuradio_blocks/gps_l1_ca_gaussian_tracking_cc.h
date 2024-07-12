@@ -200,6 +200,7 @@ private:
     volk_gnsssdr::vector<gr_complex> d_Prompt_buffer;
     double d_carrier_lock_test;
     double d_CN0_SNV_dB_Hz;
+    double d_PSig;
     double d_carrier_lock_threshold;
     int32_t d_carrier_lock_fail_counter;
 
