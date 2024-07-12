@@ -17,8 +17,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && apt-get install -
   flex=2.6.4-8build2 \
   gir1.2-gtk-3.0=3.24.33-1ubuntu1 \
   git=1:2.34.1-1ubuntu1.11 \
-  gnuradio-dev=3.10.1.1-2 \
-  gr-osmosdr=0.2.3-5build2 \
+  gnuradio-dev \
+  gr-osmosdr \
   libad9361-dev=0.2-1 \
   libarmadillo-dev=1:10.8.2+dfsg-1 \
   libblas-dev=3.10.0-2ubuntu1 \
