@@ -135,6 +135,7 @@ private:
     double d_K_blk_samples;
     double d_carrier_lock_test;
     double d_CN0_SNV_dB_Hz;
+    double d_PSig;
     double d_carrier_lock_threshold;
     double d_carrier_phase_step_rad;
     double d_carrier_phase_rate_step_rad;

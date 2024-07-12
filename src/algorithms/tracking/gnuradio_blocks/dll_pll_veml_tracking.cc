@@ -98,6 +98,7 @@ dll_pll_veml_tracking::dll_pll_veml_tracking(const Dll_Pll_Conf &conf_)
       d_K_blk_samples(0.0),
       d_carrier_lock_test(1.0),
       d_CN0_SNV_dB_Hz(0.0),
+      d_PSig(0.0),
       d_carrier_lock_threshold(d_trk_parameters.carrier_lock_th),
       d_carrier_phase_step_rad(0.0),
       d_carrier_phase_rate_step_rad(0.0),
@@ -845,6 +846,7 @@ void dll_pll_veml_tracking::start_tracking()
     d_cn0_estimation_counter = 0;
     d_carrier_lock_test = 1.0;
     d_CN0_SNV_dB_Hz = 0.0;
+    d_PSig- 0.0;
 
     if (d_veml)
         {
@@ -985,6 +987,8 @@ bool dll_pll_veml_tracking::cn0_and_tracking_lock_status(double coh_integration_
     // Code lock indicator
     const float d_CN0_SNV_dB_Hz_raw = cn0_m2m4_estimator(d_Prompt_buffer.data(), d_trk_parameters.cn0_samples, static_cast<float>(coh_integration_time_s));
     d_CN0_SNV_dB_Hz = d_cn0_smoother.smooth(d_CN0_SNV_dB_Hz_raw);
+    // PSig value
+    d_PSig = psig_estimator(d_Prompt_buffer.data(), FLAGS_cn0_samples, GPS_L1_CA_CODE_PERIOD_S);
     // Carrier lock indicator
     d_carrier_lock_test = d_carrier_lock_test_smoother.smooth(carrier_lock_detector(d_Prompt_buffer.data(), 1));
     // Loss of lock detection
@@ -2008,6 +2012,7 @@ int dll_pll_veml_tracking::general_work(int noutput_items __attribute__((unused)
                                 current_synchro_data.Carrier_phase_rads = d_acc_carrier_phase_rad;
                                 current_synchro_data.Carrier_Doppler_hz = d_carrier_doppler_hz;
                                 current_synchro_data.CN0_dB_hz = d_CN0_SNV_dB_Hz;
+                                current_synchro_data.PSig = d_PSig;
                                 current_synchro_data.correlation_length_ms = d_correlation_length_ms;
                                 current_synchro_data.Flag_valid_symbol_output = true;
                                 d_P_data_accu = gr_complex(0.0, 0.0);
