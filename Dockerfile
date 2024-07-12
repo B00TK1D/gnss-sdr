@@ -17,8 +17,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && apt-get install -
   flex=2.6.4-8build2 \
   gir1.2-gtk-3.0=3.24.33-1ubuntu1 \
   git=1:2.34.1-1ubuntu1.11 \
-  gnuradio-dev \
-  gr-osmosdr \
+  gnuradio-dev=3.10.1.1-2 \
+  gr-osmosdr=0.2.3-5build2 \
   libad9361-dev=0.2-1 \
   libarmadillo-dev=1:10.8.2+dfsg-1 \
   libblas-dev=3.10.0-2ubuntu1 \
@@ -40,7 +40,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && apt-get install -
   libpcap-dev=1.10.1-4build1 \
   libprotobuf-dev=3.12.4-1ubuntu7.22.04.1 \
   libpugixml-dev=1.12.1-1 \
-  libuhd-dev=4.1.0.5-3 \
+  libuhd-dev=4.6.0 \
   libxml2-dev=2.9.13+dfsg-1ubuntu0.4 \
   nano=6.2-1 \
   protobuf-compiler=3.12.4-1ubuntu7.22.04.1 \
