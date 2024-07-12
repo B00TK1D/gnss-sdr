@@ -109,6 +109,9 @@ float cn0_m2m4_estimator(const gr_complex* Prompt_buffer, int length, float coh_
 float carrier_lock_detector(const gr_complex* Prompt_buffer, int length);
 
 
+float psig_estimator(const gr_complex* Prompt_buffer, int length, float coh_integration_time_s);
+
+
 /** \} */
 /** \} */
 #endif  // GNSS_SDR_LOCK_DETECTORS_H
