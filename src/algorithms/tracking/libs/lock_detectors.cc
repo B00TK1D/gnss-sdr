@@ -34,6 +34,7 @@
 
 #include "lock_detectors.h"
 #include <cmath>
+#include <stdio.h>
 
 /*
  * Signal-to-Noise (SNR) (\f$\rho\f$) estimator using the Signal-to-Noise Variance (SNV) estimator:
@@ -157,5 +158,6 @@ float psig_estimator(const gr_complex* Prompt_buffer, int length, float coh_inte
         }
     Psig /= n;
     Psig = Psig * Psig;
+    printf("DEBUG: PSig: %f\n", Psig);   
     return Psig;
 }
