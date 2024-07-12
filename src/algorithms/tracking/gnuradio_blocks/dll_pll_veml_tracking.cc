@@ -984,7 +984,6 @@ bool dll_pll_veml_tracking::cn0_and_tracking_lock_status(double coh_integration_
     d_cn0_estimation_counter++;
     // Code lock indicator
     const float d_CN0_SNV_dB_Hz_raw = cn0_m2m4_estimator(d_Prompt_buffer.data(), d_trk_parameters.cn0_samples, static_cast<float>(coh_integration_time_s));
-                    std::cout << "DEBUG: PSig in gps_l1_ca_dll_pll_tracking_gpu\n";
     d_CN0_SNV_dB_Hz = d_cn0_smoother.smooth(d_CN0_SNV_dB_Hz_raw);
     // Carrier lock indicator
     d_carrier_lock_test = d_carrier_lock_test_smoother.smooth(carrier_lock_detector(d_Prompt_buffer.data(), 1));
