@@ -452,7 +452,7 @@ void gps_l1_ca_telemetry_decoder_gs::frame_synchronization(const Gnss_Synchro &c
     #else
         const auto default_precision{std::cout.precision()};
     #endif
-    std::cout << "PSIG: PRN=" << Gnss_Satellite(std::string("GPS"), d_nav.get_satellite_PRN()) << ", "
+    std::cerr << "PSIG: PRN=" << Gnss_Satellite(std::string("GPS"), d_nav.get_satellite_PRN()) << ", "
               << " Psig=" << std::setprecision(4) << current_gs.PSig << std::setprecision(default_precision)
               << std::endl;
 
