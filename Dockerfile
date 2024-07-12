@@ -8,6 +8,45 @@
 FROM phusion/baseimage:jammy-1.0.2
 LABEL version="1.0" description="GNSS-SDR image" maintainer="B00TK1D@proton.me"
 
+# This will make apt-get install without question
+ARG         DEBIAN_FRONTEND=noninteractive
+ARG         UHD_TAG=v4.6.0.0
+ARG         MAKEWIDTH=40
+
+# Install security updates and required packages
+RUN         apt-get update
+RUN         apt-get -y install -q \
+                build-essential \
+                ccache \
+                git \
+                python3-dev \
+                python3-pip \
+                curl
+# Install UHD dependencies
+RUN         apt-get -y install -q \
+                libboost-all-dev \
+                libusb-1.0-0-dev \
+                libudev-dev \
+                python3-mako \
+                doxygen \
+                python3-docutils \
+                cmake \
+                python3-requests \
+                python3-numpy \
+                dpdk \
+                libdpdk-dev
+RUN          rm -rf /var/lib/apt/lists/*
+
+RUN          mkdir -p /usr/local/src
+RUN          git clone https://github.com/EttusResearch/uhd.git /usr/local/src/uhd
+RUN          cd /usr/local/src/uhd/ && git checkout $UHD_TAG
+RUN          mkdir -p /usr/local/src/uhd/host/build
+WORKDIR      /usr/local/src/uhd/host/build
+RUN          cmake .. -DENABLE_PYTHON3=ON -DUHD_RELEASE_MODE=release -DCMAKE_INSTALL_PREFIX=/usr
+RUN          make -j $MAKEWIDTH
+RUN          make install
+RUN          uhd_images_downloader
+
 WORKDIR /home/src
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && apt-get install -y --no-install-recommends \
@@ -40,7 +79,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && apt-get install -
   libpcap-dev=1.10.1-4build1 \
   libprotobuf-dev=3.12.4-1ubuntu7.22.04.1 \
   libpugixml-dev=1.12.1-1 \
-  libuhd-dev=4.6.0 \
   libxml2-dev=2.9.13+dfsg-1ubuntu0.4 \
   nano=6.2-1 \
   protobuf-compiler=3.12.4-1ubuntu7.22.04.1 \
