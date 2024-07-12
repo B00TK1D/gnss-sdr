@@ -158,6 +158,5 @@ float psig_estimator(const gr_complex* Prompt_buffer, int length, float coh_inte
         }
     Psig /= n;
     Psig = Psig * Psig;
-    printf("DEBUG: PSig: %f\n", Psig);
     return Psig;
 }
