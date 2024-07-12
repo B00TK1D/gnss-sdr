@@ -1965,7 +1965,7 @@ int dll_pll_veml_tracking::general_work(int noutput_items __attribute__((unused)
                         current_synchro_data.Flag_valid_symbol_output = true;
                         d_P_data_accu = gr_complex(0.0, 0.0);
 
-                        std::cerr << "PSIG_DUMP: PRN=" << current_synchro_data.prn << " PSig=" << d_PSig << "\n";
+                        std::cerr << "PSIG_DUMP: PRN=" << current_synchro_data.PRN << " PSig=" << d_PSig << "\n";
                     }
                 d_extend_correlation_symbols_count++;
                 if (d_extend_correlation_symbols_count == (d_extend_correlation_symbols - 1))
@@ -2020,7 +2020,7 @@ int dll_pll_veml_tracking::general_work(int noutput_items __attribute__((unused)
                                 current_synchro_data.Flag_valid_symbol_output = true;
                                 d_P_data_accu = gr_complex(0.0, 0.0);
 
-                                std::cerr << "PSIG_DUMP: PRN=" << current_synchro_data.prn << " PSig=" << d_PSig << "\n";
+                                std::cerr << "PSIG_DUMP: PRN=" << current_synchro_data.PRN << " PSig=" << d_PSig << "\n";
                             }
 
                         // reset extended correlator
