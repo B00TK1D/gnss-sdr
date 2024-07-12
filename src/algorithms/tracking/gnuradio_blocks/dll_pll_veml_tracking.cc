@@ -846,7 +846,7 @@ void dll_pll_veml_tracking::start_tracking()
     d_cn0_estimation_counter = 0;
     d_carrier_lock_test = 1.0;
     d_CN0_SNV_dB_Hz = 0.0;
-    d_PSig- 0.0;
+    d_PSig = 0.0;
 
     if (d_veml)
         {
