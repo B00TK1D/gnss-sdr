@@ -67,6 +67,7 @@ RUN cd gnss-sdr/pipe && gcc recv.c -o /usr/bin/recvpipe
 RUN mkdir /conf && cp gnss-sdr/conf/file.conf /conf/file.conf
 RUN mv gnss-sdr/entrypoint.sh /entrypoint.sh && chmod +x /entrypoint.sh
 RUN rm -rf /home/*
+RUN mkdir /data
 
 WORKDIR /home
 
