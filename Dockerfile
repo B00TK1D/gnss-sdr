@@ -61,13 +61,14 @@ RUN git config --global http.postBuffer 52428800 && \
 RUN cd gnss-sdr/build && cmake -DENABLE_OSMOSDR=ON -DENABLE_FMCOMMS2=ON -DENABLE_PLUTOSDR=ON -DENABLE_AD9361=ON -DENABLE_RAW_UDP=ON -DENABLE_ZMQ=ON -DENABLE_PACKAGING=ON -DENABLE_INSTALL_TESTS=ON ..
 RUN cd gnss-sdr/build && make -j16
 RUN cd gnss-sdr/build && make install
+RUN /usr/bin/volk_profile -v 8111
+RUN /usr/local/bin/volk_gnsssdr_profile
 RUN cd gnss-sdr/pipe && gcc recv.c -o /usr/bin/recvpipe
 RUN mkdir /conf && cp gnss-sdr/conf/file.conf /conf/file.conf
 RUN mv gnss-sdr/entrypoint.sh /entrypoint.sh && chmod +x /entrypoint.sh
 RUN rm -rf /home/*
 
 WORKDIR /home
-RUN /usr/bin/volk_profile -v 8111
-RUN /usr/local/bin/volk_gnsssdr_profile
+
 
 CMD ["/entrypoint.sh"]
