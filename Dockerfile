@@ -70,4 +70,4 @@ WORKDIR /home
 RUN /usr/bin/volk_profile -v 8111
 RUN /usr/local/bin/volk_gnsssdr_profile
 
-CMD ["/bin/bash" "/entrypoint.sh"]
+CMD ["/bin/sh" "/entrypoint.sh"]
