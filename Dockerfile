@@ -56,11 +56,17 @@ ARG GITHUB_BRANCH=main
 
 RUN git config --global http.postBuffer 52428800 && \
   git clone https://github.com/${GITHUB_USER}/${GITHUB_REPO}.git && \
-  cd gnss-sdr/build && git checkout ${GITHUB_BRANCH} && \
-  cmake -DENABLE_OSMOSDR=ON -DENABLE_FMCOMMS2=ON -DENABLE_PLUTOSDR=ON -DENABLE_AD9361=ON -DENABLE_RAW_UDP=ON -DENABLE_ZMQ=ON -DENABLE_PACKAGING=ON -DENABLE_INSTALL_TESTS=ON .. && \
-  make -j16 && make install && cd ../.. && rm -rf * && rm -rf /home/*
+  cd gnss-sdr/build && git checkout ${GITHUB_BRANCH}
+
+RUN cmake -DENABLE_OSMOSDR=ON -DENABLE_FMCOMMS2=ON -DENABLE_PLUTOSDR=ON -DENABLE_AD9361=ON -DENABLE_RAW_UDP=ON -DENABLE_ZMQ=ON -DENABLE_PACKAGING=ON -DENABLE_INSTALL_TESTS=ON ..
+RUN make -j16make
+RUN make install
+RUN cd ../pipe && gcc recv.c -o /usr/bin/recvpipe
+RUN mkdir /conf && cp ../conf/file.conf /conf/file.conf
+RUN cd ../.. && rm -rf * && rm -rf /home/*
 
 WORKDIR /home
 RUN /usr/bin/volk_profile -v 8111
 RUN /usr/local/bin/volk_gnsssdr_profile
-CMD ["bash"]
+
+CMD ["bash" "entrypoint.sh"]
