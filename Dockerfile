@@ -59,7 +59,7 @@ RUN git config --global http.postBuffer 52428800 && \
   cd gnss-sdr/build && git checkout ${GITHUB_BRANCH}
 
 RUN cd gnss-sdr/build && cmake -DENABLE_OSMOSDR=ON -DENABLE_FMCOMMS2=ON -DENABLE_PLUTOSDR=ON -DENABLE_AD9361=ON -DENABLE_RAW_UDP=ON -DENABLE_ZMQ=ON -DENABLE_PACKAGING=ON -DENABLE_INSTALL_TESTS=ON ..
-RUN cd gnss-sdr/build && make -j16make
+RUN cd gnss-sdr/build && make -j16
 RUN cd gnss-sdr/build && make install
 RUN cd gnss-sdr/pipe && gcc recv.c -o /usr/bin/recvpipe
 RUN mkdir /conf && cp gnss-sdr/conf/file.conf /conf/file.conf
