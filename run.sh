@@ -1,5 +1,6 @@
 #!/bin/sh
 
+rm ./data/gnss.fifo
 mkfifo ./data/gnss.fifo
 nc -lu 1501 > ./data/gnss.fifo &
 
