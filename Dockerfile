@@ -63,11 +63,11 @@ RUN cd gnss-sdr/build && make -j16
 RUN cd gnss-sdr/build && make install
 RUN cd gnss-sdr/pipe && gcc recv.c -o /usr/bin/recvpipe
 RUN mkdir /conf && cp gnss-sdr/conf/file.conf /conf/file.conf
-RUN mv gnss-sdr/entrypoint.sh /entrypoint.sh
+RUN mv gnss-sdr/entrypoint.sh /entrypoint.sh && chmod +x /entrypoint.sh
 RUN rm -rf /home/*
 
 WORKDIR /home
 RUN /usr/bin/volk_profile -v 8111
 RUN /usr/local/bin/volk_gnsssdr_profile
 
-CMD ["/bin/sh" "/entrypoint.sh"]
+CMD ["/entrypoint.sh"]
