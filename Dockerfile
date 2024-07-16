@@ -65,7 +65,7 @@ RUN /usr/bin/volk_profile -v 8111
 RUN /usr/local/bin/volk_gnsssdr_profile
 RUN cd gnss-sdr/pipe && gcc recv.c -o /usr/bin/recvpipe
 RUN mkdir /conf && cp gnss-sdr/conf/udp.conf /conf/udp.conf
-RUN apt-get install -y ncat
+RUN apt-get update && apt-get install -y ncat
 RUN mv gnss-sdr/entrypoint.sh /entrypoint.sh && chmod +x /entrypoint.sh
 RUN rm -rf /home/*
 RUN mkdir /data
