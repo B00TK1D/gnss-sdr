@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build . -t gnss-sdr
+sudo docker build . -t gnss-sdr
